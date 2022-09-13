@@ -1,0 +1,24 @@
+nav {
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5em;
+  font-family: 'Bungee', cursive;
+  height: 120px;
+  width: 100%;
+  background-color: #4056a1;
+  color: white;
+}
+
+.new-tweet-blurb {
+  font-family: 'Source Sans Pro', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fa-angles-down{
+  color: red;
+}
