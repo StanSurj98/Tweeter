@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: stretch;
+  width: 100%;
 }
 
 .tweet-deets {
@@ -10,6 +10,10 @@
   align-items: center;
   justify-content: space-between;
   font-family: 'Bungee', cursive;
+}
+
+.tweet-box {
+  width: 100%;
 }
 
 .tweet-button {
@@ -21,8 +25,11 @@
 }
 
 #tweet-text {
-  border-top: 0;
-  border-right: 0;
-  border-left: 0;
-  border-bottom: 1.5em;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom-width: thick;
+  resize: none;
+  background-color: inherit;
+  width: 100%;
 }
