@@ -1,0 +1,12 @@
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 120px;
+  height: 520px;
+  width: 100%;
+  background-color: #Eab676;
+  background-image: url("https://www.transparenttextures.com/patterns/checkered-light-emboss.png");
+  color: white;
+}

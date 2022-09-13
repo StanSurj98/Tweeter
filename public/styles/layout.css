@@ -18,6 +18,7 @@ body {
   color: #545149;
   background-color: #f4f1ec;
   font-size: 24px;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 /*
@@ -28,6 +29,12 @@ body {
   font-family: 'Bungee', cursive;
  }
 
- body {
-  font-family: 'Source Sans Pro', sans-serif;
+.container {
+  display: flex;
+  margin-left: 5%;
+  margin-right: 5%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: inherit;
  }
