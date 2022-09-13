@@ -5,6 +5,18 @@
   width: 100%;
 }
 
+#tweet-text-area {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom-width: thick;
+  resize: none;
+  background-color: inherit;
+
+  /* parent = .new-tweet, so width: 100% | BUT grandP = .container, width: 90% with margins */
+  width: 100%;
+}
+
 .tweet-deets {
   display: flex;
   align-items: center;
@@ -12,24 +24,10 @@
   font-family: 'Bungee', cursive;
 }
 
-.tweet-box {
-  width: 100%;
-}
-
 .tweet-button {
   color: white;
   background-color: #4056a1;
   font-size: 24px;
-  padding-left: 12px;
-  padding-right: 12px;
-}
-
-#tweet-text {
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-bottom-width: thick;
-  resize: none;
-  background-color: inherit;
-  width: 100%;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }

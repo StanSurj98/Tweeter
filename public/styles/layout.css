@@ -21,6 +21,9 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   display: flex;
   flex-direction: column;
+  /* REMEMBER: now that we have body as column direction... our main/cross axis SWAPPED
+  we DON'T want => justify-content: center!!! 
+  otherwise ALL our content gets pushed to the middle of the entire page!! */
   align-items: center;
 }
 
@@ -35,11 +38,12 @@ body {
 
 .container {
   display: flex;
-  margin-left: 5%;
-  margin-right: 5%;
+  width: 90%;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   background-color: inherit;
-  width: 90%;
+  /* The below is old code that I might get rid of in prod, don't think they're necessary */
+  /* margin-left: 5%; */
+  /* margin-right: 5%; */
+  /* justify-content: center; */
  }
