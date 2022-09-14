@@ -4,6 +4,8 @@
   justify-content: center;
   align-items: stretch;
   width: 100%;
+}
+.tweet-articles {
   border: #545149 solid;
   border-width: thick;
   padding: 20px;
@@ -12,7 +14,8 @@
   /* box shadow */
   transition: box-shadow 0.15s;
 }
-.tweet-container:hover {
+
+.tweet-articles:hover {
   box-shadow: 10px 10px 3px rgba(33, 33, 33, .2);
 }
 
