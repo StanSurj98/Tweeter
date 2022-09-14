@@ -21,6 +21,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 25px;
 }
 
 .tweet-container header div {
@@ -35,9 +36,14 @@
   height: 100%;
 }
 
-.tweet-container textarea footer {
+.tweet-container textarea {
   display: flex;
   width: 100%;
   resize: none;
-
+  border: #545149 solid;
+  border-bottom-width: thick;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  background-color: inherit;
 }
