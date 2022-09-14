@@ -17,6 +17,10 @@
   width: 100%;
 }
 
+.text-red {
+  color: red;
+}
+
 .tweet-deets {
   display: flex;
   align-items: center;
