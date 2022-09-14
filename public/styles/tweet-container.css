@@ -4,8 +4,8 @@
   justify-content: center;
   align-items: stretch;
   width: 100%;
+  border: #545149 solid;
   border-width: thick;
-  border: solid;
   padding: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -17,6 +17,20 @@
   background-color: inherit;
   background-image: none;
   color: inherit;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tweet-container header div {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-icon {
+  width: 25%;
+  height: auto;
 }
 
 .tweet-container textarea footer {

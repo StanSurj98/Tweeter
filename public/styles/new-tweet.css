@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  /* Space between tweets below it and the main compose tweet box */
   margin-bottom: 20px;
 }
 
