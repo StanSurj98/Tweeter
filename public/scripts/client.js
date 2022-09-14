@@ -3,12 +3,15 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+
+// JQuery Doc Ready 
 $(() => {
-  // Tweet element function
+  // Creates the tweet element
   const createTweetElement = (tweetData) => {
+    // take a tweet obj
     const user = tweetData.user;
     const content = tweetData.content;
-    // take a tweet obj
+    // return an article element with HTML details inside
     const $tweetArticle = $(`
       <article class="tweet-articles">
         <header>
@@ -29,38 +32,44 @@ $(() => {
         </footer>
       </article>
     `);
-    // return an article element with HTML details inside
     return $tweetArticle;
   };
 
-  
-  // Test / driver code (temporary). Eventually will get this from the server.
-  const tweetData = {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png",
+  // Fake data taken from initial-tweets.json
+  const data = [
+    {
+      "user": {
+        "name": "Newton",
+        "avatars": "https://i.imgur.com/73hZDYK.png"
+        ,
         "handle": "@SirIsaac"
       },
-    "content": {
+      "content": {
         "text": "If I have seen further it is by standing on the shoulders of giants"
       },
-    "created_at": 1461116232227
-  }
+      "created_at": 1461116232227
+    },
+    {
+      "user": {
+        "name": "Descartes",
+        "avatars": "https://i.imgur.com/nlhLi3I.png",
+        "handle": "@rd" },
+      "content": {
+        "text": "Je pense , donc je suis"
+      },
+      "created_at": 1461113959088
+    }
+  ]
 
-  const $tweet = createTweetElement(tweetData);
-
-  // Test temporary code
-  console.log($tweet); // see what it looks like 
-  $(".tweet-container").append($tweet); // add it to the page to make sure it has correct elements and stuff
-
-
-  // Render Tweet Functionality - array of tweets
+  // Render Tweet from array of tweets
   const renderTweet = (tweetsArray) => {
-    // look through the array
-
-    // at each tweet object, pass into our earlier createTweetElement function
-
-    
+    // forEach tweet in tweetsArray, create tweet element and prepend to the container
+    tweetsArray.forEach((tweet) => {
+      const $tweet = createTweetElement(tweet);
+      $(".tweet-container").prepend($tweet);
+    });
   };
+
+  renderTweet(data); 
 
 });
