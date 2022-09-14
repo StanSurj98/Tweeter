@@ -26,11 +26,13 @@
 .tweet-container header div {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  height: 60px;
 }
 
 .profile-icon {
-  width: 25%;
-  height: auto;
+  width: auto;
+  height: 100%;
 }
 
 .tweet-container textarea footer {
