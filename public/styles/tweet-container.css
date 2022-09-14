@@ -1,0 +1,27 @@
+.tweet-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  border-width: thick;
+  border: solid;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.tweet-container header {
+  height: auto;
+  padding: 0;
+  background-color: inherit;
+  background-image: none;
+  color: inherit;
+}
+
+.tweet-container textarea footer {
+  display: flex;
+  width: 100%;
+  resize: none;
+
+}
