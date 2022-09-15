@@ -14,20 +14,23 @@ $(() => {
   $error1.hide();
   $error2.hide();
 
-  
+  // 
   // ----- Function Definitions -----
-  
+  // 
+
   // Creates the tweet element
   const createTweetElement = (tweetData) => {
     // take a tweet obj
     const user = tweetData.user;
     const content = tweetData.content;
-    // imported timeago.js library in index.html as script, use timeago.format(timestamp)
+    // imported timeago.js lib in index.html as script, use timeago.format(timestamp)
     const timestamp = tweetData.created_at;
 
     // ----- Escape Function to create SAFE HTML from user input -----
-    // Because our form is a textarea - it's safe, but when we display as text area, we can edit it... so we have to display as <h1-6>, or <p>
-    // but those by themselves are UNSAFE HTML and we can get XSS'd
+    // Because our form is a <textarea> - it's "safe HTML" 
+    // BUT if displayed as <textarea>, we can edit it... 
+    // MUST display as <h1-6>, or <p>, etc.
+    // BUT those are "UNSAFE HTML" susceptible to XSS'd
     const escape = function (str) {
       let div = document.createElement("div");
       div.appendChild(document.createTextNode(str));
@@ -77,50 +80,54 @@ $(() => {
     })
   };
 
-  // Validate NEW Tweets - slideDown() the div class="tweet-error" if catches any
-  const validateTweet = ($tweet) => {
-    // 1. i need to look at the value of the FORM
-    console.log("type of $tweet: ", typeof $tweet);
-    console.log("value: ", $tweet);
-    console.log("length: ", $tweet.length);
-    
-    // 2. if form value is empty, return appropriate error
-    if (!$tweet) return $error1.slideDown(200).show();
-    $error1.slideUp(200);
-    // 3. if form value exceeds character count, return appropriate error
-    if ($tweet.length > 140) return $error2.slideDown(200).show();
-    $error2.slideUp(200);
-    // 4. base case is return nothing and continue so we can ajax post
-    return;
-  };
-
+  // 
   //----- Initially Load All Tweets Currently In Server -----
+  // 
   loadTweets();
   
+  // 
   //----- "Submit" Event Listener -----
+  // 
   const $newTweetForm = $(".new-tweet form");
 
   $($newTweetForm).submit((event) => {
-    // prevents default page refresh behavior
+    // Don't touch - prevents default page refresh behavior
     event.preventDefault();
     const $serializedData = $newTweetForm.serialize();
 
     
 
-    // Don't touch - affects the AJAX Post
+    // Don't touch - for AJAX Post && tweet validation
     const $textArea = $("#tweet-text-area");
-    // add form validation logic
-    const $tweet = $serializedData.slice(5); // w/o slice -> text=
-    validateTweet($tweet);
+    // Add new tweet validation logic
+    const $tweet = $textArea.val(); // checks primitive string, NOT url encoded .serialize()
 
+    // 
+    // ----- Tweet Validation on Submit Event -----
+    // 
 
+    // IF tweet empty OR too long, CATCH ERROR as we hit submit
+    if (!$tweet || $tweet.length > 140) {
+      // THEN we check which error it is
+      if (!$tweet) return $error1.slideDown(200).show();
+      // LEAVE .slideUP(200) IN HERE && OUTSIDE the check 
+      $error1.slideUp(200);
+      if ($tweet.length > 140) return $error2.slideDown(200).show();
+      // in case of BACK TO BACK errors; prevents both error <div> from stacking
+      $error2.slideUp(200);
+    }
+    // ELSE NO CATCH on submit? hide both errors; proceed to post
+    $error1.slideUp(200);
+    $error2.slideUp(200);
 
+    // 
     // ----- AJAX Post -----
+    // 
     $.post("/tweets", $serializedData, () => {
-      // each submit, empty the text box && reset word counter
+      // On submit => empty text box && reset word counter
       $textArea.val("");
       $(".counter").text(140);
-      // then AJAX load all tweets from /tweets
+      // Then AJAX load all tweets from /tweets
       loadTweets();
     });
   });
