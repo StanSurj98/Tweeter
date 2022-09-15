@@ -4,15 +4,20 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// JQuery Doc Ready 
+// ----- JQuery Doc Ready -----
 $(() => {
-  console.log(`client.js is being reached`)
+  console.log(`client.js is working!`)
+
+  // ----- Function Definitions -----
 
   // Creates the tweet element
   const createTweetElement = (tweetData) => {
     // take a tweet obj
     const user = tweetData.user;
     const content = tweetData.content;
+    // imported timeago.js library in index.html as script, use timeago.format(timestamp)
+    const timestamp = tweetData.created_at;
+    
     // return an article element with HTML details inside
     const $tweetArticle = $(`
       <article class="tweet-articles">
@@ -25,7 +30,7 @@ $(() => {
         </header>
         <textarea>${content.text}</textarea>
         <footer>
-          <div>${tweetData.created_at}</div>
+          <div>${timeago.format(timestamp)}</div>
           <div>
             <i class="fa-solid fa-flag"></i>
             <i class="fa-solid fa-retweet"></i>
@@ -49,32 +54,27 @@ $(() => {
   // Fetch tweets from /tweets with AJAX GET and use renderTweet
   const loadTweets = () => {
     $.get("/tweets", function(tweets) {
-      // before rendering new tweet, clear all others
+      // before rendering new tweet, clear all others in the TWEET container
       $(".tweet-container").empty();
-      // console.log(tweets);
       renderTweet(tweets);
     })
   };
 
-  const $newTweetForm = $(".new-tweet form");
   
-  // Submit EVENT listener
+  //----- "Submit" Event Listener -----
+  const $newTweetForm = $(".new-tweet form");
 
-  // JQuery $("onlyOnFormsHere").submit(handlerFunction) <-- .submit attaches only to forms
-  // Listens for a "submit" event.
   $($newTweetForm).submit((event) => {
-    // console.log(`event.preventDefault() is working`)
+    // prevents default page refresh behavior
     event.preventDefault();
     const $serializedData = $newTweetForm.serialize();
-    // console.log($serializedData);
 
-    // submit the URL encoded serialized data via AJAX to server
+    // post URL encoded serialized data via AJAX to server
     $.post("/tweets", $serializedData, () => {
-      // on submit post, we empty the text box 
+      // each submit, empty the text box && reset word counter
       $("#tweet-text-area").val('');
-      // reset text counter
       $(".counter").text(140);
-      // then loads from GET request
+      // then AJAX loads from /tweets
       loadTweets();
     });
   });

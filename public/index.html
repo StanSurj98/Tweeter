@@ -38,10 +38,13 @@
 
     <!-- Character Counter JS -->
     <script type="text/javascript" src="./scripts/composer-char-counter.js"></script>
+
+    <!-- TimeAgo Library via cdnjs.com -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </head>
 
   <body>
-    <!-- Top nav bar (fixed) -->
+    <!-- Top Nav Bar (fixed) -->
     <nav>
       <span>tweeter</span>
       <div class="new-tweet-blurb">
@@ -49,6 +52,7 @@
         <i class="fa-solid fa-angles-down"></i>
       </div>
     </nav>
+    <!-- Header Stretch Across && Scroll Behind Nav Bar -->
     <header>
       <div>
         <img src="./images/profile-hex.png">
@@ -59,10 +63,10 @@
     </header>
     <!-- Page-specific (main) content here -->
     <main class="container">
+      <!-- Section for NEW tweets -->
       <section class="new-tweet">
         <h2>Compose Tweet</h2>
         <form method="POST" action="/tweets">
-          <!-- <label for="tweet-text">What are you humming about?</label> -->
           <textarea placeholder="What are you humming about?" name="text" id="tweet-text-area"></textarea>
           <div class="tweet-deets">
             <button class="tweet-button" type="submit">Tweet</button>
@@ -70,6 +74,7 @@
           </div>
         </form>
       </section>
+      <!-- Section for DISPLAYING all tweets -->
       <section class="tweet-container">
       </section>
     </main>
