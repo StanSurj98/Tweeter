@@ -17,7 +17,7 @@ $(() => {
     const content = tweetData.content;
     // imported timeago.js library in index.html as script, use timeago.format(timestamp)
     const timestamp = tweetData.created_at;
-    
+
     // return an article element with HTML details inside
     const $tweetArticle = $(`
       <article class="tweet-articles">
@@ -69,10 +69,21 @@ $(() => {
     event.preventDefault();
     const $serializedData = $newTweetForm.serialize();
 
+    // add form validation logic
+    const $textArea = $("#tweet-text-area");
+    // console.log("text area value: ", $textArea.val());
+    if ($textArea.val() === "") {
+      return alert(`There is no content in your tweet.`);
+    }
+    if ($textArea.val().length > 140) {
+      return alert(`Your tweet has exceeded the limit.`);
+    }
+    
     // post URL encoded serialized data via AJAX to server
     $.post("/tweets", $serializedData, () => {
+
       // each submit, empty the text box && reset word counter
-      $("#tweet-text-area").val('');
+      $textArea.val("");
       $(".counter").text(140);
       // then AJAX loads from /tweets
       loadTweets();
