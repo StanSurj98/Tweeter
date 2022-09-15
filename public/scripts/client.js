@@ -8,8 +8,15 @@
 $(() => {
   console.log(`client.js is working!`)
 
-  // ----- Function Definitions -----
+  // ----- Initially Hide Error Div -----
+  const $error1 = $("#error1");
+  const $error2 = $("#error2");
+  $error1.hide();
+  $error2.hide();
 
+  
+  // ----- Function Definitions -----
+  
   // Creates the tweet element
   const createTweetElement = (tweetData) => {
     // take a tweet obj
@@ -17,6 +24,16 @@ $(() => {
     const content = tweetData.content;
     // imported timeago.js library in index.html as script, use timeago.format(timestamp)
     const timestamp = tweetData.created_at;
+
+    // ----- Escape Function to create SAFE HTML from user input -----
+    // Because our form is a textarea - it's safe, but when we display as text area, we can edit it... so we have to display as <h1-6>, or <p>
+    // but those by themselves are UNSAFE HTML and we can get XSS'd
+    const escape = function (str) {
+      let div = document.createElement("div");
+      div.appendChild(document.createTextNode(str));
+      return div.innerHTML;
+    };
+
 
     // return an article element with HTML details inside
     const $tweetArticle = $(`
@@ -28,7 +45,7 @@ $(() => {
           </div>
           <div>${user.handle}</div>
         </header>
-        <textarea>${content.text}</textarea>
+        <h4 class="tweet-display">${escape(content.text)}</h4>
         <footer>
           <div>${timeago.format(timestamp)}</div>
           <div>
@@ -53,13 +70,32 @@ $(() => {
 
   // Fetch tweets from /tweets with AJAX GET and use renderTweet
   const loadTweets = () => {
-    $.get("/tweets", function(tweets) {
+    $.get("/tweets",(tweets) => {
       // before rendering new tweet, clear all others in the TWEET container
       $(".tweet-container").empty();
       renderTweet(tweets);
     })
   };
 
+  // Validate NEW Tweets - slideDown() the div class="tweet-error" if catches any
+  const validateTweet = ($tweet) => {
+    // 1. i need to look at the value of the FORM
+    console.log("type of $tweet: ", typeof $tweet);
+    console.log("value: ", $tweet);
+    console.log("length: ", $tweet.length);
+    
+    // 2. if form value is empty, return appropriate error
+    if (!$tweet) return $error1.slideDown(200).show();
+    $error1.slideUp(200);
+    // 3. if form value exceeds character count, return appropriate error
+    if ($tweet.length > 140) return $error2.slideDown(200).show();
+    $error2.slideUp(200);
+    // 4. base case is return nothing and continue so we can ajax post
+    return;
+  };
+
+  //----- Initially Load All Tweets Currently In Server -----
+  loadTweets();
   
   //----- "Submit" Event Listener -----
   const $newTweetForm = $(".new-tweet form");
@@ -69,23 +105,22 @@ $(() => {
     event.preventDefault();
     const $serializedData = $newTweetForm.serialize();
 
-    // add form validation logic
-    const $textArea = $("#tweet-text-area");
-    // console.log("text area value: ", $textArea.val());
-    if ($textArea.val() === "") {
-      return alert(`There is no content in your tweet.`);
-    }
-    if ($textArea.val().length > 140) {
-      return alert(`Your tweet has exceeded the limit.`);
-    }
     
-    // post URL encoded serialized data via AJAX to server
-    $.post("/tweets", $serializedData, () => {
 
+    // Don't touch - affects the AJAX Post
+    const $textArea = $("#tweet-text-area");
+    // add form validation logic
+    const $tweet = $serializedData.slice(5); // w/o slice -> text=
+    validateTweet($tweet);
+
+
+
+    // ----- AJAX Post -----
+    $.post("/tweets", $serializedData, () => {
       // each submit, empty the text box && reset word counter
       $textArea.val("");
       $(".counter").text(140);
-      // then AJAX loads from /tweets
+      // then AJAX load all tweets from /tweets
       loadTweets();
     });
   });
