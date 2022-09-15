@@ -3,12 +3,16 @@ nav {
   position: fixed;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5em;
-  font-family: 'Bungee', cursive;
+  padding: 1.5rem;
   height: 120px;
   width: 100%;
   background-color: #4056a1;
   color: white;
+}
+#tweeter-logo {
+  /* overwrites root font Source Sans Pro - for TWEETER */
+  font-family: "Bungee", cursive;
+  font-size: 2rem;
 }
 
 .new-tweet-blurb {
@@ -19,6 +23,21 @@ nav {
   justify-content: center;
 }
 
+/* screens less than 420px wides */
+@media only screen and (max-width: 420px) {
+  .new-tweet-blurb span {
+    font-size: 0px;
+  }
+  .new-tweet-blurb span::after {
+    font-size: 1.5rem;
+    content: "New Tweet";
+  }
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+  
 .fa-angles-down{
   color: red;
 }
