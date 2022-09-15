@@ -3,7 +3,10 @@ nav {
   position: fixed;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   height: 120px;
   width: 100%;
   background-color: #4056a1;
@@ -37,7 +40,7 @@ nav {
     align-items: center;
   }
 }
-  
+
 .fa-angles-down{
   color: red;
 }
