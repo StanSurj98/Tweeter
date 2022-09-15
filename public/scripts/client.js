@@ -6,6 +6,8 @@
 
 // JQuery Doc Ready 
 $(() => {
+  console.log(`client.js is being reached`)
+
   // Creates the tweet element
   const createTweetElement = (tweetData) => {
     // take a tweet obj
@@ -35,32 +37,6 @@ $(() => {
     return $tweetArticle;
   };
 
-  // Fake data taken from initial-tweets.json
-  const data = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png"
-        ,
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd" },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
-    }
-  ]
-
   // Render Tweet from array of tweets
   const renderTweet = (tweetsArray) => {
     // forEach tweet in tweetsArray, create tweet element and prepend to the container
@@ -70,6 +46,38 @@ $(() => {
     });
   };
 
-  renderTweet(data); 
+  // Fetch tweets from /tweets with AJAX GET and use renderTweet
+  const loadTweets = () => {
+    $.get("/tweets", function(tweets) {
+      // before rendering new tweet, clear all others
+      $(".tweet-container").empty();
+      // console.log(tweets);
+      renderTweet(tweets);
+    })
+  };
 
+  const $newTweetForm = $(".new-tweet form");
+  
+  // Submit EVENT listener
+
+  // JQuery $("onlyOnFormsHere").submit(handlerFunction) <-- .submit attaches only to forms
+  // Listens for a "submit" event.
+  $($newTweetForm).submit((event) => {
+    // console.log(`event.preventDefault() is working`)
+    event.preventDefault();
+    const $serializedData = $newTweetForm.serialize();
+    // console.log($serializedData);
+
+    // submit the URL encoded serialized data via AJAX to server
+    $.post("/tweets", $serializedData, () => {
+      // on submit post, we empty the text box 
+      $("#tweet-text-area").val('');
+      // reset text counter
+      $(".counter").text(140);
+      // then loads from GET request
+      loadTweets();
+    });
+  });
+
+  
 });
