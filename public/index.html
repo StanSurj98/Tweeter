@@ -57,7 +57,7 @@
     </nav>
     <div class="desktop-container">
       <!-- Header Stretch Across && Scroll Behind Nav Bar -->
-      <header>
+      <header class="profile-header">
         <div>
           <img src="./images/profile-hex.png">
         </div>
@@ -73,7 +73,6 @@
           <!-- Tweet Error Div - Initially Hidden until client.js catches error -->
           <div class="tweet-error" id="error1">⚠️ Nothing to say? Tweet is empty! ⚠️</div>
           <div class="tweet-error" id="error2">🛑 Whoa! Tweet too long! 🛑</div>
-          <h2>Compose Tweet</h2>
           <form method="POST" action="/tweets">
             <textarea placeholder="What are you humming about?" name="text" id="tweet-text-area"></textarea>
             <div class="tweet-deets">
