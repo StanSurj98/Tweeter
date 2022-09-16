@@ -59,6 +59,7 @@ body {
     align-items: center;
     margin: 2rem;
     margin-top: 160px;
+    padding-top: 0px;
   }
 
   .desktop-container main {
