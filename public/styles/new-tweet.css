@@ -5,6 +5,7 @@
   width: 100%;
   /* Space between tweets below it and the main compose tweet box */
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .tweet-error {
