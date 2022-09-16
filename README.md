@@ -24,16 +24,16 @@ This repository is the starter code for the project: Students will fork and clon
 ## Did You Say... No Refresh?
 That's right! Tweeter utilizes AJAX to fetch tweets from the server and renders every tweet without refreshing the page. In fact, everything is client-rendered and leverages the power of modern web browsers.
 
-SCREENSHOT HERE FULL DESKTOP VIEW
+!["Screenshot of full Desktop Viewport"](https://github.com/StanSurj98/Tweeter/blob/master/docs/Tweeter%20Desktop%20View.png?raw=true)
 
 ## Oh My Mobile?!
 Yup! With dynamic responsive design, Tweeter supports a wide range of mobile resolutions for a smooth user experience.
 
-SCREENSHOT HERE MOBILE VIEW
+!["Screenshot of Mobile Viewport"]("https://github.com/StanSurj98/Tweeter/blob/master/docs/Tweeter%20Mobile.png?raw=true")
 
 ## Time to Tweet!
 Simply enter your tweets in the text box to get started, after a quick character limit form validation (which turns red by the way!), click the magic button and behold your masterpiece appearing below!
 
-SCREENSHOT HERE Non-Desktop View!
+!["Screenshot of Form Validation"]("https://github.com/StanSurj98/Tweeter/blob/master/docs/Tweeter%20Error.png?raw=true")
 
 Enjoy using Tweeter!
