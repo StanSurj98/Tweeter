@@ -106,6 +106,9 @@ $(() => {
     // ----- Tweet Validation on Submit Event -----
     // 
 
+    // Always hide both errors before post
+    $error1.slideUp(200);
+    $error2.slideUp(200);
     // IF tweet empty OR too long, CATCH ERROR as we hit submit
     if (!$tweet || $tweet.length > 140) {
       // THEN we check which error it is
@@ -116,9 +119,6 @@ $(() => {
       // in case of BACK TO BACK errors; prevents both error <div> from stacking
       $error2.slideUp(200);
     }
-    // ELSE NO CATCH on submit? hide both errors; proceed to post
-    $error1.slideUp(200);
-    $error2.slideUp(200);
 
     // 
     // ----- AJAX Post -----

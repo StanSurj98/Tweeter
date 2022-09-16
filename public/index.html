@@ -55,34 +55,37 @@
         <i class="fa-solid fa-angles-down"></i>
       </div>
     </nav>
-    <!-- Header Stretch Across && Scroll Behind Nav Bar -->
-    <header>
-      <div>
-        <img src="./images/profile-hex.png">
-      </div>
-      <div>
-        <h2>Alice Bobson</h2>
-      </div>
-    </header>
-    <!-- Page-specific (main) content here -->
-    <main class="container">
-      <!-- Section for NEW tweets -->
-      <section class="new-tweet">
-        <!-- Tweet Error Div - Initially Hidden until client.js catches error -->
-        <div class="tweet-error" id="error1">⚠️ Nothing to say? Tweet is empty! ⚠️</div>
-        <div class="tweet-error" id="error2">🛑 Whoa! Tweet too long! 🛑</div>
-        <h2>Compose Tweet</h2>
-        <form method="POST" action="/tweets">
-          <textarea placeholder="What are you humming about?" name="text" id="tweet-text-area"></textarea>
-          <div class="tweet-deets">
-            <button class="tweet-button" type="submit">Tweet</button>
-            <output name="counter" class="counter" for="tweet-text">140</output>
-          </div>
-        </form>
-      </section>
-      <!-- Section for DISPLAYING all tweets -->
-      <section class="tweet-container">
-      </section>
-    </main>
+    <div class="desktop-container">
+      <!-- Header Stretch Across && Scroll Behind Nav Bar -->
+      <header>
+        <div>
+          <img src="./images/profile-hex.png">
+        </div>
+        <div>
+          <h2>Alice Bobson</h2>
+        </div>
+      </header>
+      
+      <!-- Page-specific (main) content here -->
+      <main class="container">
+        <!-- Section for NEW tweets -->
+        <section class="new-tweet">
+          <!-- Tweet Error Div - Initially Hidden until client.js catches error -->
+          <div class="tweet-error" id="error1">⚠️ Nothing to say? Tweet is empty! ⚠️</div>
+          <div class="tweet-error" id="error2">🛑 Whoa! Tweet too long! 🛑</div>
+          <h2>Compose Tweet</h2>
+          <form method="POST" action="/tweets">
+            <textarea placeholder="What are you humming about?" name="text" id="tweet-text-area"></textarea>
+            <div class="tweet-deets">
+              <button class="tweet-button" type="submit">Tweet</button>
+              <output name="counter" class="counter" for="tweet-text">140</output>
+            </div>
+          </form>
+        </section>
+        <!-- Section for DISPLAYING all tweets -->
+        <section class="tweet-container">
+        </section>
+      </main>
+    </div>
   </body>
 </html>
