@@ -16,3 +16,24 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Express
 - Node 5.10.x or above
+- Body-parser 1.5.x or above
+- Chance 4.13.x or above
+- md5 2.1.0 or above
+
+# Using Tweeter
+## Did You Say... No Refresh?
+That's right! Tweeter utilizes AJAX to fetch tweets from the server and renders every tweet without refreshing the page. In fact, everything is client-rendered and leverages the power of modern web browsers.
+
+SCREENSHOT HERE FULL DESKTOP VIEW
+
+## Oh My Mobile?!
+Yup! With dynamic responsive design, Tweeter supports a wide range of mobile resolutions for a smooth user experience.
+
+SCREENSHOT HERE MOBILE VIEW
+
+## Time to Tweet!
+Simply enter your tweets in the text box to get started, after a quick character limit form validation (which turns red by the way!), click the magic button and behold your masterpiece appearing below!
+
+SCREENSHOT HERE Non-Desktop View!
+
+Enjoy using Tweeter!

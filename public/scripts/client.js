@@ -11,6 +11,7 @@ $(() => {
   // ----- Initially Hide Error Divs -----
   const $error1 = $("#error1");
   const $error2 = $("#error2");
+  // Different from .slideUp() later below, this skips the initial animation on page load
   $error1.hide();
   $error2.hide();
 
@@ -26,9 +27,11 @@ $(() => {
     // imported timeago.js lib in index.html as script, use timeago.format(timestamp)
     const timestamp = tweetData.created_at;
 
-    // ----- Escape Function -----
+    // ----- Escape Function ----- 
+    // Was told to define this function inside of here
+
     // <textarea> is safeHTML from XSS but publicly editable
-    const escape = function (str) {
+    const escape = (str) => {
       let div = document.createElement("div");
       // Must use this function for <div, h1-6, p> tags which are non-editable but unsafeHTML
       div.appendChild(document.createTextNode(str));
@@ -104,17 +107,17 @@ $(() => {
     // ----- Tweet Validation on Submit Event -----
     // 
 
-    // Always hide both errors before post request
+    // Always "re-hide" both errors before post request; in case of previous error submission
     $error1.slideUp(200);
     $error2.slideUp(200);
     // IF tweet empty OR too long, CATCH ERROR as we hit submit
     if (!$tweet || $tweet.length > 140) {
       // THEN we check which error it is
       if (!$tweet) return $error1.slideDown(200).show();
-      // LEAVE .slideUP(200) IN HERE && OUTSIDE the check 
+      // LEAVE .slideUP(200) IN HERE && OUTSIDE the check...
       $error1.slideUp(200);
       if ($tweet.length > 140) return $error2.slideDown(200).show();
-      // in case of BACK TO BACK errors; prevents both error <div> from stacking
+      // in case of BACK TO BACK errors; this prevents both error's <div> from stacking
       $error2.slideUp(200);
     }
 
