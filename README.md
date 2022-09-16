@@ -29,11 +29,11 @@ That's right! Tweeter utilizes AJAX to fetch tweets from the server and renders 
 ## Oh My Mobile?!
 Yup! With dynamic responsive design, Tweeter supports a wide range of mobile resolutions for a smooth user experience.
 
-!["Screenshot of Mobile Viewport"]("https://github.com/StanSurj98/Tweeter/blob/master/docs/Tweeter%20Mobile.png?raw=true")
+!["Screenshot of Mobile Viewport"](https://raw.githubusercontent.com/StanSurj98/Tweeter/master/docs/Tweeter%20Mobile.png)
 
 ## Time to Tweet!
 Simply enter your tweets in the text box to get started, after a quick character limit form validation (which turns red by the way!), click the magic button and behold your masterpiece appearing below!
 
-!["Screenshot of Form Validation"]("https://github.com/StanSurj98/Tweeter/blob/master/docs/Tweeter%20Error.png?raw=true")
+!["Screenshot of Form Validation"](https://github.com/StanSurj98/Tweeter/blob/master/docs/Tweeter%20Error.png?raw=true)
 
 Enjoy using Tweeter!
