@@ -28,11 +28,10 @@
   border-bottom-width: thick;
   resize: none;
   background-color: inherit;
-
-  /* parent = .new-tweet, so width: 100% | BUT grandP = .container, width: 90% with margins */
   width: 100%;
 }
 
+/* For character counter > 140 */
 .text-red {
   color: red;
 }

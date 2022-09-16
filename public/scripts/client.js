@@ -8,7 +8,7 @@
 $(() => {
   console.log(`client.js is working!`)
 
-  // ----- Initially Hide Error Div -----
+  // ----- Initially Hide Error Divs -----
   const $error1 = $("#error1");
   const $error2 = $("#error2");
   $error1.hide();
@@ -18,27 +18,25 @@ $(() => {
   // ----- Function Definitions -----
   // 
 
-  // Creates the tweet element
+  // Creates each tweet <articles> box
   const createTweetElement = (tweetData) => {
-    // take a tweet obj
+    // takes a tweet OBJECT
     const user = tweetData.user;
     const content = tweetData.content;
     // imported timeago.js lib in index.html as script, use timeago.format(timestamp)
     const timestamp = tweetData.created_at;
 
-    // ----- Escape Function to create SAFE HTML from user input -----
-    // Because our form is a <textarea> - it's "safe HTML" 
-    // BUT if displayed as <textarea>, we can edit it... 
-    // MUST display as <h1-6>, or <p>, etc.
-    // BUT those are "UNSAFE HTML" susceptible to XSS'd
+    // ----- Escape Function -----
+    // <textarea> is safeHTML from XSS but publicly editable
     const escape = function (str) {
       let div = document.createElement("div");
+      // Must use this function for <div, h1-6, p> tags which are non-editable but unsafeHTML
       div.appendChild(document.createTextNode(str));
       return div.innerHTML;
     };
 
 
-    // return an article element with HTML details inside
+    // Fill <article> element with HTML details inside via string template in JQuery
     const $tweetArticle = $(`
       <article class="tweet-articles">
         <header>
@@ -62,10 +60,10 @@ $(() => {
     return $tweetArticle;
   };
 
-  // Render Tweet from array of tweets
+  // Renders and prepend individual tweets from array of tweets
   const renderTweet = (tweetsArray) => {
-    // forEach tweet in tweetsArray, create tweet element and prepend to the container
     tweetsArray.forEach((tweet) => {
+      // calling back earlier function, returns the tweet <article> element
       const $tweet = createTweetElement(tweet);
       $(".tweet-container").prepend($tweet);
     });
@@ -106,7 +104,7 @@ $(() => {
     // ----- Tweet Validation on Submit Event -----
     // 
 
-    // Always hide both errors before post
+    // Always hide both errors before post request
     $error1.slideUp(200);
     $error2.slideUp(200);
     // IF tweet empty OR too long, CATCH ERROR as we hit submit
@@ -131,6 +129,4 @@ $(() => {
       loadTweets();
     });
   });
-
-  
 });

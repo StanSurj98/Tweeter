@@ -21,9 +21,11 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   display: flex;
   flex-direction: column;
-  /* REMEMBER: now that we have body as column direction... our main/cross axis SWAPPED
-  we DON'T want => justify-content: center!!! 
-  otherwise ALL our content gets pushed to the middle of the entire page!! */
+  /* 
+    REMEMBER: now that we have body as column direction... our main/cross axis SWAPPED
+    we DON'T want => justify-content: center!!! 
+    otherwise ALL our content gets pushed to the middle of the entire page!! 
+  */
   align-items: center;
 }
 
