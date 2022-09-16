@@ -26,8 +26,14 @@ nav {
   justify-content: center;
 }
 
-/* Phone screens less than 425px wides */
+.fa-angles-down{
+  color: red;
+}
+
+
+/* Mobile Screens less than 425px wides */
 @media only screen and (max-width: 425px) {
+  /* Lines 33-39 changes the blurb text */
   .new-tweet-blurb span {
     font-size: 0px;
   }
@@ -35,11 +41,13 @@ nav {
     font-size: 1.5rem;
     content: "New Tweet";
   }
+  /* stacks the nav elements for mobile view */
   nav {
     flex-direction: column;
     align-items: center;
   }
 
+  /* stacks name && tweeter handle */
   .tweet-container .tweet-articles header {
     display: flex;
     flex-flow: column nowrap;
@@ -47,6 +55,4 @@ nav {
   }
 }
 
-.fa-angles-down{
-  color: red;
-}
+/* Desktop Media Query is in "layout.css" */
